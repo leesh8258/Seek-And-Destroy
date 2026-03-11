@@ -85,10 +85,8 @@ public class PlayerMoveController : MonoBehaviourPun
 
         worldMoveDir = worldMove;
 
-        // 수평
         Vector3 velocity = worldMove * moveSpeed;
 
-        // 수직
         if (characterController.isGrounded)
         {
             if (gravityVelocity < 0f) gravityVelocity = -2f;
@@ -103,7 +101,6 @@ public class PlayerMoveController : MonoBehaviourPun
         characterController.Move(velocity * Time.deltaTime);
     }
 
-    // 발소리
     public void OnFootStep()
     {
         if (!photonView.IsMine) return;

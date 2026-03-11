@@ -31,7 +31,6 @@ public class PlayerSlotUI : MonoBehaviour
 
     public void TickOccupied(InfoService.RoomMemberInfo member)
     {
-        // 처음 비어있다가 채워진 경우
         if (!hasMember)
         {
             hasMember = true;
@@ -44,7 +43,6 @@ public class PlayerSlotUI : MonoBehaviour
             isLocal = !member.IsLocal;
         }
 
-        // Character Sprite 갱신
         if (isCharacterId != member.CharacterId)
         {
             isCharacterId = member.CharacterId;
@@ -63,7 +61,6 @@ public class PlayerSlotUI : MonoBehaviour
             }
         }
 
-        // Weapon Sprite 갱신
         if (isWeaponId != member.WeaponId)
         {
             isWeaponId = member.WeaponId;
@@ -81,14 +78,12 @@ public class PlayerSlotUI : MonoBehaviour
             }
         }
 
-        // Ready 표시
         if (isReady != member.IsReady)
         {
             isReady = member.IsReady;
             if (readyBadge != null) readyBadge.SetActive(isReady);
         }
 
-        // Local 표시
         if (isLocal != member.IsLocal)
         {
             isLocal = member.IsLocal;

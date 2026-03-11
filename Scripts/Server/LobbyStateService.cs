@@ -1,7 +1,6 @@
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
-using UnityEngine;
 
 public class LobbyStateService
 {
@@ -16,19 +15,16 @@ public class LobbyStateService
     {
         if (!PhotonNetwork.InRoom || PhotonNetwork.CurrentRoom == null)
         {
-            Debug.LogWarning("방에 들어가 있지 않습니다");
             return false;
         }
 
         if (!PhotonNetwork.IsMasterClient)
         {
-            Debug.LogWarning("호스트만 설정을 변경할 수 있습니다");
             return false;
         }
 
         if (NetKeys.TryGetRoomBool(NetKeys.RoomKey.PLAY, out bool isPlay) && isPlay)
         {
-            Debug.LogWarning("게임이 시작된 후에는 설정을 변경할 수 없습니다");
             return false;
         }
 
@@ -49,13 +45,11 @@ public class LobbyStateService
     {
         if (!PhotonNetwork.InRoom || PhotonNetwork.CurrentRoom == null || PhotonNetwork.LocalPlayer == null)
         {
-            Debug.LogWarning("방에 들어가 있지 않습니다");
             return false;
         }
 
         if (NetKeys.TryGetRoomBool(NetKeys.RoomKey.PLAY, out bool isPlay) && isPlay)
         {
-            Debug.LogWarning("게임이 시작된 후에는 무기를 변경할 수 없습니다");
             return false;
         }
 
@@ -74,13 +68,11 @@ public class LobbyStateService
     {
         if (!PhotonNetwork.InRoom || PhotonNetwork.CurrentRoom == null || PhotonNetwork.LocalPlayer == null)
         {
-            Debug.LogWarning("방에 들어가 있지 않습니다");
             return false;
         }
 
         if (NetKeys.TryGetRoomBool(NetKeys.RoomKey.PLAY, out bool isPlay) && isPlay)
         {
-            Debug.LogWarning("게임이 시작된 후에는 캐릭터를 변경할 수 없습니다");
             return false;
         }
 
@@ -106,13 +98,11 @@ public class LobbyStateService
     {
         if (!PhotonNetwork.InRoom || PhotonNetwork.CurrentRoom == null || PhotonNetwork.LocalPlayer == null)
         {
-            Debug.LogWarning("방에 들어가 있지 않습니다");
             return false;
         }
 
         if (NetKeys.TryGetRoomBool(NetKeys.RoomKey.PLAY, out bool isPlay) && isPlay)
         {
-            Debug.LogWarning("게임이 시작된 후에는 Ready를 변경할 수 없습니다");
             return false;
         }
 
@@ -135,28 +125,24 @@ public class LobbyStateService
         Hashtable props = new Hashtable();
         bool needSet = false;
 
-        // READY
         if (mode == InitMode.Reset || !NetKeys.HasPlayerKey(localPlayer, NetKeys.PlayerKey.READY))
         {
             props[NetKeys.PlayerKey.READY] = false;
             needSet = true;
         }
 
-        // CHARACTER_ID
         if (mode == InitMode.Reset || !NetKeys.HasPlayerKey(localPlayer, NetKeys.PlayerKey.CHARACTER_ID))
         {
             props[NetKeys.PlayerKey.CHARACTER_ID] = 0;
             needSet = true;
         }
 
-        // WEAPON_ID
         if (mode == InitMode.Reset || !NetKeys.HasPlayerKey(localPlayer, NetKeys.PlayerKey.WEAPON_ID))
         {
             props[NetKeys.PlayerKey.WEAPON_ID] = 0;
             needSet = true;
         }
 
-        // INIT
         if (mode == InitMode.Reset || !NetKeys.HasPlayerKey(localPlayer, NetKeys.PlayerKey.INIT))
         {
             props[NetKeys.PlayerKey.INIT] = false;

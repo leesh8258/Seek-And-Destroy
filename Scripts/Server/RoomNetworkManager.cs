@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class RoomNetworkManager : MonoBehaviourPunCallbacks
 {
+    public static RoomNetworkManager Instance;
+
     private const byte FIXED_MAX_PLAYERS = 2;
-    public static RoomNetworkManager Instance { get; private set; }
 
     [Header("Scenes")]
     [SerializeField] private string lobbySceneName = "LobbyScene";
@@ -64,11 +65,18 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
         Connect();
     }
 
+    private void OnDestroy()
+    {
+        if (Instance != null)
+        {
+            Instance = null;
+        }
+    }
+
     private void LateUpdate()
     {
         Info.Tick();
     }
-
 
     public void Connect()
     {
@@ -100,9 +108,6 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
         currentRoomCode = string.Empty;
 
         Info.Clear();
-
-        Debug.LogWarning("포톤 연결끊김: " + cause);
-
         Disconnected?.Invoke();
     }
 
@@ -110,15 +115,13 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsConnectedAndReady)
         {
-            Debug.LogWarning("Photon 연결이 준비되지 않았습니다.");
-            CreateRoomFailed?.Invoke("Photon 연결이 준비되지 않았습니다.");
+            CreateRoomFailed?.Invoke("Connection is not ready");
             return;
         }
 
         if (PhotonNetwork.InRoom)
         {
-            Debug.LogWarning("이미 방에 참가 중입니다.");
-            CreateRoomFailed?.Invoke("이미 방에 참가 중입니다.");
+            CreateRoomFailed?.Invoke("It's already in the Room");
 
             Info.ForceRefresh();
             RoomJoined?.Invoke();
@@ -136,15 +139,13 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsConnectedAndReady)
         {
-            Debug.LogWarning("Photon 연결이 준비되지 않았습니다.");
-            JoinRoomFailed?.Invoke("Photon 연결이 준비되지 않았습니다.");
+            JoinRoomFailed?.Invoke("Connection is not ready");
             return;
         }
 
         if (PhotonNetwork.InRoom)
         {
-            Debug.LogWarning("이미 방에 참가 중입니다.");
-            JoinRoomFailed?.Invoke("이미 방에 참가 중입니다.");
+            JoinRoomFailed?.Invoke("It's already in the Room");
 
             Info.ForceRefresh();
             RoomJoined?.Invoke();
@@ -206,19 +207,16 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
                 return;
             }
 
-            Debug.LogWarning("방 코드 생성에 실패했습니다. 다시 시도해주세요.");
-            CreateRoomFailed?.Invoke("방 코드 생성에 실패했습니다. 다시 시도해주세요.");
+            CreateRoomFailed?.Invoke("Failed to generate room code, please try again.");
             return;
         }
 
-        Debug.LogWarning("방 생성 실패:" + message);
-        CreateRoomFailed?.Invoke("방 생성 실패: " + message);
+        CreateRoomFailed?.Invoke("Failed to create room: " + message);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.LogWarning("방 입장 실패:" + message);
-        JoinRoomFailed?.Invoke("방 입장 실패: " + message);
+        JoinRoomFailed?.Invoke("Failed to join room: " + message);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

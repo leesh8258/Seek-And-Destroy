@@ -29,6 +29,14 @@ public class DBManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void OnDestroy()
+    {
+        if (Instance != null)
+        {
+            Instance = null;
+        }
+    }
+
     public bool TryGet<T>(int key, out T value) where T : ScriptableObject
     {
         value = null;

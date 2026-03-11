@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
-    public static CursorManager Instance { get; private set; }
+    public static CursorManager Instance;
 
     private Texture2D currentTexture;
     private Vector2 currentHotspot;
@@ -20,6 +20,14 @@ public class CursorManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance != null)
+        {
+            Instance = null;
+        }
     }
 
     public void ApplyDefaultCursor()

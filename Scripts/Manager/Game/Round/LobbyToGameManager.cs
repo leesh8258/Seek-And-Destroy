@@ -47,13 +47,13 @@ public class LobbyToGameManager: MonoBehaviourPunCallbacks
 
         if (!NetKeys.TryGetRoomInt(NetKeys.RoomKey.MAP_ID, out int mapId))
         {
-            Debug.LogError("[NetworkBridge] Missing room MAP_ID.");
+            Debug.LogError("[LobbyToGameManager] Missing room MAP_ID.");
             return;
         }
 
         if (mapManager == null)
         {
-            Debug.LogError("[NetworkBridge] MapManager is null.");
+            Debug.LogError("[LobbyToGameManager] MapManager is null.");
             return;
         }
 
@@ -61,21 +61,20 @@ public class LobbyToGameManager: MonoBehaviourPunCallbacks
 
         if (!mapManager.IsReady)
         {
-            Debug.LogError("[NetworkBridge] Map/Rule not ready.");
+            Debug.LogError("[LobbyToGameManager] Map/Rule not ready.");
             return;
         }
 
         SpawnLocalPlayer();
         MarkLocalInitialized();
 
-        RoundManager roundManager = RoundManager.Instance;
-        if (roundManager == null)
+        if (RoundManager.Instance == null)
         {
-            Debug.LogError("[NetworkBridge] RoundManager is null.");
+            Debug.LogError("[LobbyToGameManager] RoundManager.Instance is null.");
             return;
         }
 
-        roundManager.NotifyWorldReady();
+        RoundManager.Instance.NotifyWorldReady();
 
         isReady = true;
     }

@@ -12,7 +12,6 @@ public class FovVisibilityTarget : MonoBehaviour
     [SerializeField, ReadOnly] private bool isVisible;
 
     public Transform VisibilityCheckPoint => visibilityCheckPoint != null ? visibilityCheckPoint : transform;
-    public bool IsVisible => isVisible;
 
     public void SetManagedRenderers(Renderer[] renderers)
     {

@@ -27,25 +27,21 @@ public class MatchNetworkService
 
         if (!PhotonNetwork.InRoom || PhotonNetwork.CurrentRoom == null)
         {
-            Debug.LogWarning("방에 들어가 있지 않습니다");
             return false;
         }
 
         if (!PhotonNetwork.IsMasterClient)
         {
-            Debug.LogWarning("호스트만 시작할 수 있습니다");
             return false;
         }
 
         if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
         {
-            Debug.LogWarning("2명 이상이 필요합니다");
             return false;
         }
 
         if (info != null && !info.AllPlayersReady())
         {
-            Debug.LogWarning("모든 플레이어가 READY 상태여야 합니다");
             return false;
         }
 
@@ -54,18 +50,15 @@ public class MatchNetworkService
             return true;
         }
 
-        // 바꿀 값
         Hashtable set = new Hashtable();
         set[NetKeys.RoomKey.PLAY] = true;
 
-        // 현재 이 값이 아니면 업데이트X
         Hashtable expected = new Hashtable();
         expected[NetKeys.RoomKey.PLAY] = false;
 
         bool requested = PhotonNetwork.CurrentRoom.SetCustomProperties(set, expected);
         if (!requested)
         {
-            Debug.LogWarning("게임 시작 요청 거절");
             return false;
         }
 

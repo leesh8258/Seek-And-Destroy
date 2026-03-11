@@ -3,23 +3,17 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviourPun, IPunObservable
 {
-    // 캐릭터 이동
     private const string ANIMATION_MOVE_X = "MoveX";
     private const string ANIMATION_MOVE_Y = "MoveY";
     private const string ANIMATION_MOVE = "Move";
-    
-    // 총 모션
     private const string ANIMATION_RELOAD = "Reload";
-
     private const string ANIMATION_DEAD = "Dead";
-    // 모션 속도
     private const string ANIMATION_RELOAD_SPEED = "ReloadSpeed";
 
     [Header("Animation Damp")]
     [SerializeField] private float animationDamp = 0.1f;
     [SerializeField] private float remoteDamp = 0.1f;
 
-    // 애니메이션
     [Header("Animation Base Clip")]
     [SerializeField] private AnimationClip Base_Idle;
     [SerializeField] private AnimationClip Base_Reload;

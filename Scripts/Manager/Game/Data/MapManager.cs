@@ -11,7 +11,6 @@ public class MapManager : MonoBehaviour
     private Transform[] spawnPoints;
 
     public bool IsReady { get; private set; }
-    public Transform[] SpawnPoints => spawnPoints;
 
     public void Initialize(int mapId)
     {

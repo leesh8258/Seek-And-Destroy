@@ -15,7 +15,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
         GameEnd = 4
     }
 
-    public static RoundManager Instance { get; private set; }
+    public static RoundManager Instance;
 
     private const int COUNTDOWN_DURATION_SECONDS_FIXED = 3;
     private const double VICTORY_CHECK_INTERVAL = 0.5;
@@ -55,7 +55,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
     private void OnDestroy()
     {
-        if (Instance == this)
+        if (Instance != null)
         {
             Instance = null;
         }
@@ -540,7 +540,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
         if (!NetKeys.SetRoomProps(set, expected))
         {
-            Debug.LogWarning("RoundEnd RoomProps CAS failed after winner score applied.");
+            Debug.LogWarning("[RoundManager] MasterSetWinner RoomKey Set Error");
         }
     }
 

@@ -47,7 +47,7 @@ public class PlayerInitializeController : MonoBehaviourPunCallbacks
     {
         if (!TryInitialize())
         {
-            Debug.Log("Player Initialize 실패");
+            Debug.LogError("[PlayerInitializeController] Player TryInitialize Failed");
         }
     }
 
@@ -74,7 +74,7 @@ public class PlayerInitializeController : MonoBehaviourPunCallbacks
         {
             if(!TryInitialize())
             {
-                Debug.Log("Player Initialize 실패");
+                Debug.LogError("[PlayerInitializeController] Player TryInitialize Failed");
             }
             
             return;

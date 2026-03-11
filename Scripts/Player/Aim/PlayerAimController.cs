@@ -37,7 +37,6 @@ public class PlayerAimController : MonoBehaviour
         aimObjectVelocity = Vector3.zero;
     }
 
-    // Update용 에임 처리
     public void Tick(Vector3 ownerWorldPosition, Vector2 screenPosition)
     {
         if (mainCamera == null || weaponAnchor == null || aimObjectTransform == null) return;
@@ -69,7 +68,6 @@ public class PlayerAimController : MonoBehaviour
         desiredAimObjectPosition = ownerWorldPosition + aimDirection * aimCameraDistance;
     }
 
-    // LateUpdate용 카메라 이동 처리
     public void LateTick()
     {
         if (aimObjectTransform == null) return;

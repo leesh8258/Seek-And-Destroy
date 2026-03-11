@@ -21,11 +21,7 @@ public class SceneCursorInstaller : MonoBehaviour
 
     public void Apply()
     {
-        if (CursorManager.Instance == null)
-        {
-            Debug.LogWarning("CursorManager.Instance is null");
-            return;
-        }
+        if (CursorManager.Instance == null) return;
 
         if (useDefaultCursor)
         {

@@ -7,7 +7,7 @@ public sealed class WeaponEffectsManager : MonoBehaviour
     private const int HitKindNone = 0;
     private const int HitKindEnvironment = 1;
 
-    public static WeaponEffectsManager Instance { get; private set; }
+    public static WeaponEffectsManager Instance;
 
     [Header("References")]
     [SerializeField] private Transform effectPool;
@@ -43,7 +43,7 @@ public sealed class WeaponEffectsManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (Instance == this)
+        if (Instance != null)
         {
             Instance = null;
         }

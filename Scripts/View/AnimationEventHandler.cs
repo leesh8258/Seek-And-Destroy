@@ -9,7 +9,6 @@ public class AnimationEventHandler : MonoBehaviour
         playerMoveController = GetComponentInParent<PlayerMoveController>();
     }
 
-    // 발소리 사운드 이벤트
     public void OnFootStep()
     {
         if (playerMoveController == null) return;
