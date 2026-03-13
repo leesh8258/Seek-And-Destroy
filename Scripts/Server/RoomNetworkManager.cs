@@ -44,14 +44,17 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        else
         {
             Destroy(gameObject);
             return;
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = gameVersion;
@@ -63,14 +66,6 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
         Match = new MatchNetworkService(lobbySceneName, gameSceneName, defaultMapId, Info);
 
         Connect();
-    }
-
-    private void OnDestroy()
-    {
-        if (Instance != null)
-        {
-            Instance = null;
-        }
     }
 
     private void LateUpdate()
