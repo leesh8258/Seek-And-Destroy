@@ -1,5 +1,6 @@
 # Seek-And-Destroy
-<img width="49%" height="auto" alt="로비" src="https://github.com/user-attachments/assets/0154957b-0387-47b2-a31a-66ba03a3929b" />
+<img width="49%" height="auto" alt="Image" src="https://github.com/user-attachments/assets/0154957b-0387-47b2-a31a-66ba03a3929b" />
+<img width="49%" height="auto" alt="Image" src="https://github.com/user-attachments/assets/71521378-9db9-437c-9e4a-e53e928077f0" />
 <div align="center">
   <b><게임 이미지></b>
 </div>
@@ -23,6 +24,7 @@
 ## 2. 플레이 영상
 
 ## 3. 게임 빌드
+https://drive.google.com/file/d/1wy4DfbY1S3tkfV85JXWjRsx2NG9XSJVx/view?usp=drive_link
 
 ## 4. 핵심 기능 소개
 #### 1. Photon 서버 구현
