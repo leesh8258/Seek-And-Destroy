@@ -31,22 +31,18 @@ public sealed class WeaponEffectsManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+        else
         {
             Destroy(gameObject);
             return;
         }
 
-        Instance = this;
         environmentProbeColliders = new Collider[Mathf.Max(1, environmentSoundProbeMax)];
-    }
-
-    private void OnDestroy()
-    {
-        if (Instance != null)
-        {
-            Instance = null;
-        }
     }
 
     public void PlayMuzzle(Transform muzzle, in WeaponShotVfx weaponShotVfx)

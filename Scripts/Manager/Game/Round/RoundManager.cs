@@ -43,21 +43,15 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+        else
         {
             Destroy(gameObject);
             return;
-        }
-
-        Instance = this;
-        ResetLocalState();
-    }
-
-    private void OnDestroy()
-    {
-        if (Instance != null)
-        {
-            Instance = null;
         }
     }
 

@@ -10,25 +10,20 @@ public class PhotonServerInfo : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        else
         {
             Destroy(gameObject);
             return;
         }
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
         PhotonNetwork.NetworkStatisticsEnabled = true;
         PhotonNetwork.SendRate = sendRate;
         PhotonNetwork.SerializationRate = serializationRate;
-    }
-
-    private void OnDestroy()
-    {
-        if (Instance != null)
-        {
-            Instance = null;
-        }
     }
 }
