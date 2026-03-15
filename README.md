@@ -9,8 +9,6 @@
 
 - 유료 에셋 사용으로 인해 소스 코드만 등록된 점을 밝힙니다
 
-- 포트폴리오 소개 PDF : [제작 중]
-
 ## 1. 게임소개
 - 소개
   - "**찾아내고 쏜다**"를 핵심 컨셉으로 한 1vs1 PC 온라인 슈팅 게임입니다
@@ -26,7 +24,10 @@
 ## 3. 게임 빌드
 https://drive.google.com/file/d/1wy4DfbY1S3tkfV85JXWjRsx2NG9XSJVx/view?usp=drive_link
 
-## 4. 핵심 기능 소개
+## 4. 기술 문서
+https://drive.google.com/file/d/1lnGh7ddnWrCNTFCk0GpFFtzKv-hwJ7f7/view?usp=drive_link
+
+## 5. 핵심 기능 소개
 #### 1. Photon 서버 구현
 - **PUN 2** 기반 멀티플레이 구조를 활용하여 로비 상태 동기화부터 게임 시작까지의 흐름을 구현했습니다.
 
@@ -60,7 +61,7 @@ https://drive.google.com/file/d/1wy4DfbY1S3tkfV85JXWjRsx2NG9XSJVx/view?usp=drive
 
 - **ScriptableObject**와 **Dictionary**를 활용하여 콘텐츠가 추가되더라도 UI 수정 비용이 적도록 구성했습니다.
 
-## 5. 트러블 슈팅
+## 6. 트러블 슈팅
 #### 1. 시야 시스템 구현
 - 문제 상황: 처음에는 Material과 Shader를 활용하여 시야 시스템을 구현하려 했지만, 시야 범위 밖 오브젝트가 제대로 처리되지 않거나 모든 오브젝트에 별도 Material 처리가 필요해 확장성과 유지보수 측면에서 한계가 있었습니다.
 
