@@ -107,8 +107,12 @@ public class LobbyToGameManager: MonoBehaviourPunCallbacks
             return null;
         }
 
-        int actorNumber = PhotonNetwork.LocalPlayer != null ? PhotonNetwork.LocalPlayer.ActorNumber : 1;
-        return mapManager.GetSpawnPoint(actorNumber);
+        if (PhotonNetwork.LocalPlayer == null)
+        {
+            return null;
+        }
+
+        return mapManager.GetSpawnPoint(PhotonNetwork.LocalPlayer);
     }
 
     private void MarkLocalInitialized()

@@ -1,3 +1,4 @@
+using Photon.Realtime;
 using UnityEngine;
 using VInspector;
 
@@ -133,13 +134,18 @@ public class PlayerRoundLifecycleController : MonoBehaviour
             mapManager = FindAnyObjectByType<MapManager>();
         }
 
-        int actorNumber = 1;
-        if (componentCache != null && componentCache.PhotonView != null && componentCache.PhotonView.Owner != null)
+        if (mapManager == null)
         {
-            actorNumber = componentCache.PhotonView.Owner.ActorNumber;
+            return;
         }
 
-        Transform spawn = mapManager.GetSpawnPoint(actorNumber);
+        Player ownerPlayer = null;
+        if (componentCache != null && componentCache.PhotonView != null)
+        {
+            ownerPlayer = componentCache.PhotonView.Owner;
+        }
+
+        Transform spawn = mapManager.GetSpawnPoint(ownerPlayer);
         if (spawn == null) return;
 
         CharacterController characterController = GetComponent<CharacterController>();
