@@ -20,6 +20,7 @@
 - 개발 환경: C#, PUN 2, Unity 6000.3.0f1 LTS
 
 ## 2. 플레이 영상
+https://www.youtube.com/watch?v=GYJoj1vSZJM
 
 ## 3. 게임 빌드
 https://drive.google.com/file/d/1wy4DfbY1S3tkfV85JXWjRsx2NG9XSJVx/view?usp=drive_link
